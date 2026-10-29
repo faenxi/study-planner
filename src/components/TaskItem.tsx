@@ -3,9 +3,11 @@ import { PRIORITY_LABELS } from '../data/labels'
 
 interface TaskItemProps {
   task: Task
+  onToggle: (id: number) => void
+  onDelete: (id: number) => void
 }
 
-function TaskItem({ task }: TaskItemProps) {
+function TaskItem({ task, onToggle, onDelete }: TaskItemProps) {
   // Модифікатор BEM: виконане завдання виглядає інакше
   const itemClassName = task.completed ? 'task-item task-item--completed' : 'task-item'
 
@@ -21,6 +23,19 @@ function TaskItem({ task }: TaskItemProps) {
           </span>
           <span className="task-item__status">{task.completed ? 'Виконано' : 'Не виконано'}</span>
         </div>
+      </div>
+      <div className="task-item__actions">
+        <button type="button" className="button button--secondary button--small" onClick={() => onToggle(task.id)}>
+          {task.completed ? 'Повернути' : 'Виконано'}
+        </button>
+        <button
+          type="button"
+          className="button button--danger button--small"
+          aria-label={`Видалити завдання «${task.title}»`}
+          onClick={() => onDelete(task.id)}
+        >
+          Видалити
+        </button>
       </div>
     </li>
   )
