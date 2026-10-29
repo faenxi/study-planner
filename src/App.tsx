@@ -1,13 +1,30 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import TaskFilters from './components/TaskFilters'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
+import TaskStats from './components/TaskStats'
 import { initialTasks } from './data/initialTasks'
-import type { NewTask, Task } from './types/task'
+import type { NewTask, Task, TaskFilter } from './types/task'
+
+function matchesFilter(task: Task, filter: TaskFilter): boolean {
+  switch (filter) {
+    case 'completed':
+      return task.completed
+    case 'active':
+      return !task.completed
+    default:
+      return true
+  }
+}
 
 function App() {
   // Єдине джерело правди: масив завдань живе в App
   const [tasks, setTasks] = useState<Task[]>(initialTasks)
+  const [filter, setFilter] = useState<TaskFilter>('all')
+
+  // Фільтр змінює лише те, що показується. Вихідний масив tasks залишається без змін.
+  const visibleTasks = tasks.filter((task) => matchesFilter(task, filter))
 
   // Immutable update: створюємо НОВИЙ масив, а не викликаємо push у старому.
   // id обчислюється всередині updater-функції, тому завжди спирається на актуальний масив.
@@ -35,7 +52,16 @@ function App() {
       <Header />
       <main className="app__main">
         <TaskForm onAddTask={handleAddTask} />
-        <TaskList tasks={tasks} onToggle={handleToggleTask} onDelete={handleDeleteTask} />
+        <TaskStats tasks={tasks} />
+        <section className="app__tasks">
+          <TaskFilters filter={filter} onFilterChange={setFilter} />
+          <TaskList
+            tasks={visibleTasks}
+            hasAnyTasks={tasks.length > 0}
+            onToggle={handleToggleTask}
+            onDelete={handleDeleteTask}
+          />
+        </section>
       </main>
     </div>
   )
