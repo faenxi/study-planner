@@ -1,5 +1,6 @@
 import type { Task } from '../types/task'
 import { PRIORITY_LABELS } from '../data/labels'
+import './TaskItem.scss'
 
 interface TaskItemProps {
   task: Task

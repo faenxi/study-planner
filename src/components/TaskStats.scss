@@ -1,0 +1,35 @@
+@use '../styles/tokens' as *;
+
+.task-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-3;
+  margin: 0;
+
+  &__item {
+    padding: $space-3 $space-4;
+    text-align: center;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+
+    &--completed .task-stats__value {
+      color: $color-success;
+    }
+
+    &--active .task-stats__value {
+      color: $color-primary;
+    }
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    color: $color-muted;
+  }
+
+  &__value {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+}

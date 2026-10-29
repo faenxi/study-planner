@@ -1,0 +1,98 @@
+@use '../styles/tokens' as *;
+
+.task-item {
+  display: flex;
+  gap: $space-4;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-4;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-left: 4px solid $color-primary;
+  border-radius: $radius;
+
+  @media (max-width: $breakpoint-small) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__body {
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  &__description {
+    margin: $space-1 0 0;
+    color: $color-muted;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    align-items: center;
+    margin-top: $space-2;
+    font-size: 0.8rem;
+  }
+
+  &__category {
+    padding: 2px $space-2;
+    background: $color-bg;
+    border-radius: 999px;
+  }
+
+  &__priority {
+    padding: 2px $space-2;
+    font-weight: 600;
+    border-radius: 999px;
+
+    &--low {
+      color: #166534;
+      background: #dcfce7;
+    }
+
+    &--medium {
+      color: #92400e;
+      background: #fef3c7;
+    }
+
+    &--high {
+      color: #991b1b;
+      background: #fee2e2;
+    }
+  }
+
+  &__status {
+    color: $color-muted;
+  }
+
+  &__actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: $space-2;
+  }
+
+  // Виконане завдання: інший колір рамки, закреслена назва, приглушений вигляд
+  &--completed {
+    background: #f9fafb;
+    border-left-color: $color-success;
+
+    .task-item__title {
+      color: $color-muted;
+      text-decoration: line-through;
+    }
+
+    .task-item__description {
+      opacity: 0.7;
+    }
+
+    .task-item__status {
+      font-weight: 600;
+      color: $color-success;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@use '../styles/tokens' as *;
+
+.header {
+  margin-bottom: $space-5;
+  text-align: center;
+
+  &__title {
+    margin: 0;
+    font-size: 2rem;
+    color: $color-primary;
+  }
+
+  &__subtitle {
+    margin: $space-1 0 0;
+    color: $color-muted;
+  }
+}

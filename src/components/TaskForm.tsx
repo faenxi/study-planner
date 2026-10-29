@@ -3,6 +3,7 @@ import type { FormEvent } from 'react'
 import { PRIORITIES } from '../types/task'
 import type { NewTask, Priority } from '../types/task'
 import { PRIORITY_LABELS } from '../data/labels'
+import './TaskForm.scss'
 
 interface TaskFormProps {
   onAddTask: (task: NewTask) => void

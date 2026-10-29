@@ -1,0 +1,24 @@
+@use 'tokens' as *;
+@use 'button';
+
+// Глобальними залишаються лише базові стилі. Усе інше задають BEM-блоки компонентів.
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+  color: $color-text;
+  background: $color-bg;
+}

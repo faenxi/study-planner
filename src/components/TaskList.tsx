@@ -1,5 +1,6 @@
 import type { Task } from '../types/task'
 import TaskItem from './TaskItem'
+import './TaskList.scss'
 
 interface TaskListProps {
   /** Завдання, які треба показати (вже відфільтровані). */

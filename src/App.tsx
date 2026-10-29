@@ -6,6 +6,7 @@ import TaskList from './components/TaskList'
 import TaskStats from './components/TaskStats'
 import { initialTasks } from './data/initialTasks'
 import type { NewTask, Task, TaskFilter } from './types/task'
+import './App.scss'
 
 function matchesFilter(task: Task, filter: TaskFilter): boolean {
   switch (filter) {

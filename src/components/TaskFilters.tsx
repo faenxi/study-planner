@@ -1,5 +1,6 @@
 import type { TaskFilter } from '../types/task'
 import { FILTERS, FILTER_LABELS } from '../data/labels'
+import './TaskFilters.scss'
 
 interface TaskFiltersProps {
   filter: TaskFilter

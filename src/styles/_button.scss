@@ -1,0 +1,48 @@
+@use 'tokens' as *;
+
+// Блок button використовується в кількох компонентах (TaskForm, TaskItem)
+.button {
+  padding: $space-2 $space-4;
+  font: inherit;
+  font-weight: 600;
+  color: $color-text;
+  cursor: pointer;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-small;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+
+  @include focus-ring;
+
+  &--primary {
+    color: #fff;
+    background: $color-primary;
+    border-color: $color-primary;
+
+    &:hover {
+      background: $color-primary-dark;
+      border-color: $color-primary-dark;
+    }
+  }
+
+  &--secondary:hover {
+    background: $color-bg;
+  }
+
+  &--danger {
+    color: $color-danger;
+
+    &:hover {
+      color: #fff;
+      background: $color-danger;
+      border-color: $color-danger;
+    }
+  }
+
+  &--small {
+    padding: $space-1 $space-3;
+    font-size: 0.875rem;
+  }
+}

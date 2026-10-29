@@ -1,0 +1,65 @@
+@use '../styles/tokens' as *;
+
+.task-form {
+  @include card;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-4;
+
+  @media (max-width: $breakpoint-small) {
+    grid-template-columns: 1fr;
+  }
+
+  &__title {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 1.15rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+
+    &--wide {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $space-2 $space-3;
+    font: inherit;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-small;
+
+    @include focus-ring;
+
+    &--textarea {
+      resize: vertical;
+    }
+
+    &--invalid {
+      border-color: $color-danger;
+    }
+  }
+
+  &__error {
+    margin: 0;
+    font-size: 0.875rem;
+    color: $color-danger;
+  }
+
+  &__actions {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+}
