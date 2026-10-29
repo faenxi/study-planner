@@ -1,8 +1,20 @@
+import { useState } from 'react'
+import Header from './components/Header'
+import TaskList from './components/TaskList'
+import { initialTasks } from './data/initialTasks'
+import type { Task } from './types/task'
+
 function App() {
+  // Єдине джерело правди: масив завдань живе в App
+  const [tasks] = useState<Task[]>(initialTasks)
+
   return (
-    <main>
-      <h1>Study Planner</h1>
-    </main>
+    <div className="app">
+      <Header />
+      <main className="app__main">
+        <TaskList tasks={tasks} />
+      </main>
+    </div>
   )
 }
 
