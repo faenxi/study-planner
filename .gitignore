@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+
+# build output
+dist
+dist-ssr
+*.tsbuildinfo
+
+# env and logs
+.env
+.env.*
+!.env.example
+*.local
+*.log
+
+# editors
+.idea
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
