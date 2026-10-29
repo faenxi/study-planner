@@ -4,6 +4,14 @@
   display: flex;
   flex-wrap: wrap;
   gap: $space-2;
+  align-items: center;
+  justify-content: space-between;
+
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+  }
 
   &__button {
     padding: $space-2 $space-4;

@@ -27,6 +27,13 @@ function App() {
   // Фільтр змінює лише те, що показується. Вихідний масив tasks залишається без змін.
   const visibleTasks = tasks.filter((task) => matchesFilter(task, filter))
 
+  // Лічильники для кнопок фільтра теж похідні дані, окремий state не потрібен
+  const counts: Record<TaskFilter, number> = {
+    all: tasks.length,
+    completed: tasks.filter((task) => task.completed).length,
+    active: tasks.filter((task) => !task.completed).length,
+  }
+
   // Immutable update: створюємо НОВИЙ масив, а не викликаємо push у старому.
   // id обчислюється всередині updater-функції, тому завжди спирається на актуальний масив.
   function handleAddTask(newTask: NewTask) {
@@ -48,6 +55,11 @@ function App() {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id))
   }
 
+  // Immutable update: залишаємо лише невиконані завдання
+  function handleClearCompleted() {
+    setTasks((prevTasks) => prevTasks.filter((task) => !task.completed))
+  }
+
   return (
     <div className="app">
       <Header />
@@ -55,7 +67,12 @@ function App() {
         <TaskForm onAddTask={handleAddTask} />
         <TaskStats tasks={tasks} />
         <section className="app__tasks">
-          <TaskFilters filter={filter} onFilterChange={setFilter} />
+          <TaskFilters
+            filter={filter}
+            counts={counts}
+            onFilterChange={setFilter}
+            onClearCompleted={handleClearCompleted}
+          />
           <TaskList
             tasks={visibleTasks}
             hasAnyTasks={tasks.length > 0}
